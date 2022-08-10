@@ -50,7 +50,7 @@ function showCountryCard(arr) {
       'beforeend',
       renderMarkupCountryInfo(arr[0])
     );
-  } else {
+  } else if (arr.length <= 10) {
     refs.countryList.insertAdjacentHTML(
       'beforeend',
       renderMarkupCountryList(arr)
