@@ -52,6 +52,6 @@ function showCountryCard(countries) {
     countries.map(country => {
       countriesListMarkup += renderMarkupCountryList(country);
     });
-    refs.countryList.insertAdjacentHTML('beforeend', countriesListMarkup);
+    refs.countryList.innerHTML = countriesListMarkup(countries);
   }
 }
