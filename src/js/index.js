@@ -1,6 +1,6 @@
 import '../css/styles.css';
 import debounce from 'lodash.debounce';
-import { Notiflix } from 'notiflix';
+import Notiflix from 'notiflix';
 import { fetchCountries } from './fetchCountries';
 import { refs } from './get-refs';
 import {
@@ -20,7 +20,7 @@ refs.searchForm.addEventListener(
 function onCountrySearchForm() {
   const name = refs.searchForm.value.trim();
 
-  if (name === '') {
+  if (!name) {
     clearMarkup();
     return;
   }
@@ -29,7 +29,7 @@ function onCountrySearchForm() {
     .then(showCountryCard)
     .catch(error => {
       clearMarkup();
-      Notify.failure('Oops, there is no country with that name');
+      Notiflix.Notify.failure('Oops, there is no country with that name');
     });
 }
 
@@ -39,10 +39,12 @@ function clearMarkup() {
 }
 
 function showCountryCard(countries) {
+  clearMarkup();
+
   if (countries.length > limit) {
-    Notify.info('Too many matches found. Please enter a more specific name.');
-    clearMarkup();
-    return;
+    return Notiflix.Notify.info(
+      'Too many matches found. Please enter a more specific name.'
+    );
   } else if (countries.length === 1) {
     refs.countryInfo.innerHTML = renderMarkupCountryInfo(countries[0]);
   } else {
