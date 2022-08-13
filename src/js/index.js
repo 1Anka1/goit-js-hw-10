@@ -55,3 +55,4 @@ function showCountryCard(countries) {
     refs.countryList.insertAdjacentHTML('beforeend', countriesListMarkup);
   }
 }
+console.log(showCountryCard());
